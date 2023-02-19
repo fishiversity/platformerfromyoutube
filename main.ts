@@ -1,3 +1,6 @@
+namespace SpriteKind {
+    export const Coin = SpriteKind.create()
+}
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile0`, function (sprite, location) {
     game.gameOver(false)
     game.setGameOverEffect(false, effects.dissolve)
@@ -5,6 +8,10 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile0`, function (sprite, l
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile1`, function (sprite, location) {
     game.gameOver(true)
     game.setGameOverEffect(true, effects.confetti)
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Coin, function (sprite, otherSprite) {
+    info.changeScoreBy(1)
+    sprites.destroy(otherSprite)
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (Gub.vy == 0) {
@@ -37,7 +44,47 @@ for (let value of tiles.getTilesByType(assets.tile`myTile2`)) {
         . . . . . f f f f f f f . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
-        `, SpriteKind.Player)
+        `, SpriteKind.Coin)
+    animation.runImageAnimation(
+    coin,
+    [img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . f f f f f f f . . . . 
+        . . . . f 5 5 5 5 5 5 5 f . . . 
+        . . . f 5 5 4 4 4 4 5 5 5 f . . 
+        . . f 5 5 5 5 5 5 5 5 5 5 5 f . 
+        . . f 5 4 5 5 5 5 5 5 5 5 5 f . 
+        . . f 5 4 5 5 5 5 5 5 5 5 5 f . 
+        . . f 5 4 5 5 5 5 5 5 5 5 5 f . 
+        . . f 5 4 5 5 5 5 5 5 5 5 5 f . 
+        . . f 5 4 5 5 5 5 5 5 5 5 5 f . 
+        . . f 5 5 5 5 5 5 5 5 5 5 5 f . 
+        . . . f 5 5 4 4 4 4 4 5 5 f . . 
+        . . . . f 5 5 5 5 5 5 5 f . . . 
+        . . . . . f f f f f f f . . . . 
+        . . . . . . . . . . . . . . . . 
+        `,img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . f f f f f . . . . . 
+        . . . . . f 5 5 5 5 5 f . . . . 
+        . . . . f 5 5 4 4 5 5 5 f . . . 
+        . . . f 5 5 5 5 5 5 5 5 5 f . . 
+        . . . f 5 4 5 5 5 5 5 5 5 f . . 
+        . . . f 5 4 5 5 5 5 5 5 5 f . . 
+        . . . f 5 4 5 5 5 5 5 5 5 f . . 
+        . . . f 5 4 5 5 5 5 5 5 5 f . . 
+        . . . f 5 4 5 5 5 5 5 5 5 f . . 
+        . . . f 5 5 5 5 5 5 5 5 5 f . . 
+        . . . . f 5 5 4 4 4 5 5 f . . . 
+        . . . . . f 5 5 5 5 5 f . . . . 
+        . . . . . . f f f f f . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `],
+    500,
+    true
+    )
     tiles.placeOnTile(coin, value)
     tiles.setTileAt(value, assets.tile`transparency16`)
 }
