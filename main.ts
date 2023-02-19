@@ -1,3 +1,7 @@
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile0`, function (sprite, location) {
+    game.gameOver(false)
+    game.setGameOverEffect(false, effects.dissolve)
+})
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (Gub.vy == 0) {
         Gub.vy = -160
