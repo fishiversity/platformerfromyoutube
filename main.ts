@@ -123,7 +123,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
     }
 })
 let Robot: Sprite = null
-let Computer: Sprite = null
+let Computer2: Sprite = null
 let coin: Sprite = null
 let Gub: Sprite = null
 scene.setBackgroundColor(9)
@@ -297,8 +297,8 @@ for (let value of tiles.getTilesByType(assets.tile`myTile2`)) {
     tiles.placeOnTile(coin, value)
     tiles.setTileAt(value, assets.tile`transparency16`)
 }
-for (let value of tiles.getTilesByType(assets.tile`myTile3`)) {
-    Computer = sprites.create(img`
+for (let value2 of tiles.getTilesByType(assets.tile`myTile3`)) {
+    Computer2 = sprites.create(img`
         .....................ffff.......
         ....................ff5ffffff...
         ....................ff5555fffff.
@@ -332,16 +332,33 @@ for (let value of tiles.getTilesByType(assets.tile`myTile3`)) {
         ................................
         ................................
         `, SpriteKind.Computer)
-    tiles.placeOnTile(Computer, value)
-    tiles.setTileAt(value, assets.tile`transparency16`)
+    tiles.placeOnTile(Computer2, value2)
+    tiles.setTileAt(value2, assets.tile`transparency16`)
 }
 game.onUpdate(function () {
     Gub.setImage(assets.image`GubJumping`)
-    if (Gub.vx > 0) {
+    if (Gub.vx < 0) {
         Gub.image.flipX()
     }
     if (Gub.vy < 0) {
-        Gub.setImage(assets.image`GubJumping`)
+        Gub.setImage(img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `)
     } else {
     	
     }
