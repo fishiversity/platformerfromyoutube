@@ -1,5 +1,6 @@
 namespace SpriteKind {
     export const Coin = SpriteKind.create()
+    export const Computer = SpriteKind.create()
 }
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile0`, function (sprite, location) {
     game.gameOver(false)
@@ -18,6 +19,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         Gub.vy = -160
     }
 })
+let Computer: Sprite = null
 let coin: Sprite = null
 let Gub: Sprite = null
 scene.setBackgroundColor(9)
@@ -189,4 +191,24 @@ for (let value of tiles.getTilesByType(assets.tile`myTile2`)) {
     )
     tiles.placeOnTile(coin, value)
     tiles.setTileAt(value, assets.tile`transparency16`)
+}
+for (let value of tiles.getTilesByType(assets.tile`myTile3`)) {
+    Computer = sprites.create(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, SpriteKind.Computer)
 }
